@@ -19,7 +19,7 @@ const App = () => {
 
   useEffect(() => {
     getNews();
-  }, [topic,search])
+  }, [topic])
 
   const updateSearch = e => {
     setSearch(e.target.value);
@@ -27,6 +27,7 @@ const App = () => {
 
   const getSearch = e => {
     e.preventDefault();
+    getNews();
   }
   const updateTopic = e => {
     (e.target.value==="none")? setTopic("") : setTopic(e.target.value);
@@ -38,18 +39,18 @@ const App = () => {
       <br/>
       <br/>
       <Form onSubmit={getSearch}>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label className="label">Search something</Form.Label>
-          <Form.Control type="text" placeholder="Type keywords.." value={search} onChange={updateSearch} />
+        <Form.Group>
+          <Form.Label className="label">Search: </Form.Label>
+          <Form.Control type="text" placeholder="Type keywords.." value={search} onChange={updateSearch}/>
         </Form.Group>
         <br></br>
         <Button variant="outline-primary" type="submit">
-          Submit
+          Search!
         </Button>
         <br/>
         <br/>
         <Form.Group>
-          <Form.Label className="label">Choose a topic</Form.Label>
+          <Form.Label className="label">Filter</Form.Label>
           <Form.Select onChange={updateTopic} defaultValue="none" >
             <option value="none">none</option>
             <option value="health">Health</option>
